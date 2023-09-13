@@ -1,0 +1,5 @@
+CLASS zrk_bp_ce_i_shipreq DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zrk_ce_i_shipreq.
+ENDCLASS.
+
+CLASS zrk_bp_ce_i_shipreq IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,4 @@
+@EndUserText.label: 'SD for Shipment Req'
+define service ZRK_UI_CE_ShipReq {
+  expose ZRK_CE_I_ShipReq as ShipReq;
+}
