@@ -9,7 +9,7 @@ authorization master ( instance )
 {
 
   field ( readonly) ShipReqNo ;
-  create;
+  create ;
   update;
   delete;
 }
