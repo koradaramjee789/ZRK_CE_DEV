@@ -1,7 +1,20 @@
 @EndUserText.label: 'Shipment Request'
 @ObjectModel.query.implementedBy: 'ABAP:ZRK_CL_CE_SHIPMENT_REQ'
+@UI.headerInfo: {
+    typeName: 'Shipment Request',
+    typeNamePlural: 'Shipment Requests',
+    title: {
+        type: #STANDARD,
+        value: 'ShipReqNo'
+    },
+    description: {
+        type: #STANDARD,
+        value: 'Description'
+    }
+}
 define root custom entity ZRK_CE_I_ShipReq
   // with parameters parameter_name : parameter_type
+  
 {
 
       @UI.facet      : [{
@@ -33,6 +46,14 @@ define root custom entity ZRK_CE_I_ShipReq
           label      : 'Sender Address',
           type       :  #FIELDGROUP_REFERENCE,
           targetQualifier: 'QFSenderAddress'
+      },
+      {
+          id         : 'Items',
+          purpose    : #STANDARD,
+          position   : 30,
+          label      : 'Items',
+          type       :  #LINEITEM_REFERENCE,
+          targetElement: '_ShipReqItems'
       }]
 
       @EndUserText.label: 'Shipment Req.No.'
@@ -81,5 +102,14 @@ define root custom entity ZRK_CE_I_ShipReq
       @UI.selectionField: [{position: 30 }]
       @UI.identification: [{ position: 80 }]
       @UI.fieldGroup: [ { type: #STANDARD,  position: 60 ,  qualifier: 'QFSenderAddress'  } ]
-      SenderCountry  : abap.char( 20 );
+      @ObjectModel.text.element: ['_Countries.CountryName']
+      SenderCountry  :  abap.char( 20 );
+      
+//      SenderCountryName : _Countries.CountryName ;
+      LocalLastChangedOn : abp_locinst_lastchange_tstmpl;
+      
+      _ShipReqItems : composition [0..*] of ZRK_CE_I_ShipReqItem  ;
+      
+      _Countries    : association [1..1] to ZRK_I_Country 
+                        on $projection.SenderCountry =  _Countries.Country ;
 }

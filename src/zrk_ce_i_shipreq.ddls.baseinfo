@@ -4,7 +4,10 @@
 "FROM":
 [],
 "ASSOCIATED":
-[],
+[
+"ZRK_CE_I_SHIPREQITEM",
+"ZRK_I_COUNTRY"
+],
 "BASE":
 [],
 "ANNO_REF":

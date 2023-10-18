@@ -1,4 +1,6 @@
 @EndUserText.label: 'SD for Shipment Req'
 define service ZRK_UI_CE_ShipReq {
-  expose ZRK_CE_I_ShipReq as ShipReq;
+  expose ZRK_CE_I_ShipReq     as ShipReq;
+  expose ZRK_CE_I_ShipReqItem as ShipReqItem;
+  expose ZRK_I_Country        as CountriesF4;
 }

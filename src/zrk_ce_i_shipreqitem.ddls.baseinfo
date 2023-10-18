@@ -4,7 +4,9 @@
 "FROM":
 [],
 "ASSOCIATED":
-[],
+[
+"ZRK_CE_I_SHIPREQ"
+],
 "BASE":
 [],
 "ANNO_REF":
