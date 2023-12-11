@@ -12,6 +12,10 @@
         value: 'Description'
     }
 }
+
+@UI.createHidden: true //#(CreateHidden)
+@UI.deleteHidden: #(DeleteHidden)
+
 define custom entity ZRK_CE_I_ShipReqItem
   // with parameters parameter_name : parameter_type
 {
@@ -57,6 +61,9 @@ define custom entity ZRK_CE_I_ShipReqItem
       RecipientZipCode  : abap.numc( 5 );
       @UI.identification      : [{ position: 120 }]
       RecipientCountry  : abap.char( 20 );
+      
+      CreateHidden : abap_boolean ;
+      DeleteHidden : abap_boolean ;
       
       _ShipReq : association to parent ZRK_CE_I_ShipReq 
         on $projection.ShipReqNo = _ShipReq.ShipReqNo ;

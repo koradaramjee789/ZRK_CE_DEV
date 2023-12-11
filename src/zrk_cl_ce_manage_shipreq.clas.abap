@@ -12,7 +12,8 @@ CLASS zrk_cl_ce_manage_shipreq DEFINITION
 
     METHODS get_shipment_requests
       IMPORTING io_request      TYPE REF TO if_rap_query_request OPTIONAL
-      EXPORTING et_shipreq_resp TYPE tt_shipreq_resp.
+      EXPORTING et_shipreq_resp TYPE tt_shipreq_resp
+      RAISING   zrk_cx_ce_rap_query_provider.
 
     METHODS get_shipment_req_det
       IMPORTING im_shipreq_no   TYPE zrk_ship_req
@@ -40,7 +41,7 @@ CLASS zrk_cl_ce_manage_shipreq IMPLEMENTATION.
     IF io_request IS BOUND.
       " paging
       " TODO: variable is assigned but never used (ABAP cleaner)
-      DATA(lt_filter) = io_request->get_filter( ).
+      DATA(lt_filter) = io_request->get_filter( )->get_as_ranges(  ).
       " TODO: variable is assigned but never used (ABAP cleaner)
       DATA(lv_offset) = io_request->get_paging( )->get_offset( ).
       DATA(lv_page_size) = io_request->get_paging( )->get_page_size( ).
@@ -61,6 +62,16 @@ CLASS zrk_cl_ce_manage_shipreq IMPLEMENTATION.
     <fs_ship_req>-SenderStreetNo = 'Kelvin Straße 5'.
     <fs_ship_req>-SenderZipCode  = '50041'.
     <fs_ship_req>-SenderCountry  = 'Germany'.
+
+    IF VALUE #( lt_filter[ name = 'SHIPREQNO' ]-range[ 1 ]-low OPTIONAL ) <> 'SH0001' .
+
+      RAISE EXCEPTION TYPE zrk_cx_ce_rap_query_provider
+        EXPORTING
+          textid = VALUE scx_t100key( msgid = 'ZRK_MESSAGES'
+          msgno = 010 ).
+
+
+    ENDIF.
   ENDMETHOD.
 
   METHOD get_shipment_req_det.
@@ -95,5 +106,7 @@ CLASS zrk_cl_ce_manage_shipreq IMPLEMENTATION.
     <fs_ship_req>-DispatchDate    = '20231011'.
     <fs_ship_req>-DeliveryDate    = '20231020'.
     <fs_ship_req>-RecipientName   = 'Bogdan Nelsan'.
+    <fs_ship_req>-CreateHidden = abap_true.
+    <fs_ship_req>-DeleteHidden = abap_true.
   ENDMETHOD.
 ENDCLASS.
