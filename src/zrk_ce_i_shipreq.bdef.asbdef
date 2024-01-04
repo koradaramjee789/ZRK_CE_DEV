@@ -8,12 +8,14 @@ authorization master ( instance )
 etag master LocalLastChangedOn
 {
 
-  field ( readonly) ShipReqNo ;
-  create ;
+  field ( readonly ) ShipReqNo;
+  create;
   update;
   delete;
 
-  association _ShipReqItems { create ; }
+  action CustomActionDemo;
+
+  association _ShipReqItems { create; }
 }
 
 define behavior for ZRK_CE_I_ShipReqItem alias ShipReqItem
@@ -23,10 +25,10 @@ authorization master ( instance )
 //etag dependent
 {
 
-  field ( readonly) ShipReqNo , ShipReqItemNo ;
+  field ( readonly ) ShipReqNo, ShipReqItemNo;
 
   update;
   delete;
 
-  association _ShipReq ;
+  association _ShipReq;
 }

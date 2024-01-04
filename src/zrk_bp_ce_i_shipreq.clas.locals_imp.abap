@@ -65,6 +65,8 @@ CLASS lhc_ShipReq DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS cba_Shipreqitems FOR MODIFY
       IMPORTING entities_cba FOR CREATE ShipReq\_Shipreqitems.
+    METHODS CustomActionDemo FOR MODIFY
+      IMPORTING keys FOR ACTION ShipReq~CustomActionDemo.
 
 ENDCLASS.
 
@@ -101,6 +103,9 @@ CLASS lhc_ShipReq IMPLEMENTATION.
 
   METHOD cba_Shipreqitems.
   ENDMETHOD.
+  METHOD CustomActionDemo.
+  ENDMETHOD.
+
 ENDCLASS.
 
 

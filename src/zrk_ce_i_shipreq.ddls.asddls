@@ -59,7 +59,7 @@ define root custom entity ZRK_CE_I_ShipReq
       @EndUserText.label: 'Shipment Req.No.'
       @UI.selectionField: [{position: 10 }]
       @UI.lineItem   : [{ position: 10 }]
-      @UI.identification: [{ position: 10 }]
+      @UI.identification: [{ position: 10 , type: #FOR_ACTION, dataAction: 'CustomActionDemo' , label: 'Custom Action Demo'  }]
   key ShipReqNo      : zrk_ship_req;
       @EndUserText.label: ''
       @UI.lineItem   : [{ position: 20 }]

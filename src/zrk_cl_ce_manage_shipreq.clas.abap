@@ -63,15 +63,15 @@ CLASS zrk_cl_ce_manage_shipreq IMPLEMENTATION.
     <fs_ship_req>-SenderZipCode  = '50041'.
     <fs_ship_req>-SenderCountry  = 'Germany'.
 
-    IF VALUE #( lt_filter[ name = 'SHIPREQNO' ]-range[ 1 ]-low OPTIONAL ) <> 'SH0001' .
-
-      RAISE EXCEPTION TYPE zrk_cx_ce_rap_query_provider
-        EXPORTING
-          textid = VALUE scx_t100key( msgid = 'ZRK_MESSAGES'
-          msgno = 010 ).
-
-
-    ENDIF.
+*    IF VALUE #( lt_filter[ name = 'SHIPREQNO' ]-range[ 1 ]-low OPTIONAL ) <> 'SH0001' .
+*
+*      RAISE EXCEPTION TYPE zrk_cx_ce_rap_query_provider
+*        EXPORTING
+*          textid = VALUE scx_t100key( msgid = 'ZRK_MESSAGES'
+*          msgno = 010 ).
+*
+*
+*    ENDIF.
   ENDMETHOD.
 
   METHOD get_shipment_req_det.
